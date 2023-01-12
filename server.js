@@ -1,33 +1,38 @@
-const { User } = require('./models')
+const { User, Thought } = require('./models')
 const express = require('express')
+const router = require('./routes')
 const app = express()
 const port = 3001
 
+
 app.use(express.json())
+app.use(router)
 
 
-app.get('/api/Users', async(req,res)=>{
+//Thought routes
+
+app.post('/api/Thoughts', async(req,res)=>{
     try{
-        res.json(await User.find({}))
-    }
-    catch(err){
-        console.log(err)
-        res.status(500).json('Request failed')
-    }
-})
-app.post('/api/Users', async(req,res)=>{
-    try{
-        let newUser = await User.create({
-            username: req.body.username.trim(),
-            email: req.body.email
+        let userId = req.body.userId
+        let newThought = await Thought.create({
+            thoughtText: req.body.thoughtText,
+            username: req.body.username
         })
-        res.json(newUser)
+        res.json(newThought)
+        await User.findByIdAndUpdate(req.body.userId, {thoughts: newThought._id })
+
     }
     catch(err){
         console.log(err)
-        res.status(500).json('Error in adding user')
+        res.status(500).json('Thought not posted')
     }
 })
+
+app.get('/api/Thoughts', async(req,res)=>{
+    let thoughts = await Thought.find({})
+    res.json(thoughts)
+})
+
 
 
 

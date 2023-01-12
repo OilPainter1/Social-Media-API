@@ -15,8 +15,13 @@ const thoughtSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+},{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  })
 
 const Thought = mongoose.model('Thought', thoughtSchema)
 
-module.exports = Thought
+module.exports = { Thought }
