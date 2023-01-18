@@ -56,7 +56,7 @@ router.put('/:userId', async(req,res)=>{
     }
 })
 
-router.put('/:userId/friends/:friendId', async(req,res)=>{
+router.post('/:userId/friends/:friendId', async(req,res)=>{
     try{
     let newFriend = await User.findById(req.params.friendId)
     let updatedUser = await User.findById(req.params.userId)

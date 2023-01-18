@@ -34,6 +34,26 @@ router.post('/', async(req,res)=>{
     }
 })
 
+router.put('/:thoughtId', async(req,res)=>{
+    try{
+        res.json(await Thought.findByIdAndUpdate(req.params.thoughtId,req.body,{new: true}))
+    }
+    catch(err){
+        console.log('error in updating thought')
+        res.status(500).json('error in updating thought')
+    }
+})
+
+router.delete('/:thoughtId', async(req,res)=>{
+    try{
+        res.json(await Thought.findByIdAndDelete(req.params.thoughtId))
+    }
+    catch(err){
+        console.log('error in deleting thought'),
+        res.status(500).json('error in deleting thought')
+    }
+})
+
 router.post('/:thoughtId/reactions', async (req,res)=>{
     try{
         let thoughtById = await Thought.findById(req.params.thoughtId)
