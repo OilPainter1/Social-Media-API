@@ -34,7 +34,18 @@ router.post('/', async(req,res)=>{
     }
 })
 
-
+router.post('/:thoughtId/reactions', async (req,res)=>{
+    try{
+        let thoughtById = await Thought.findById(req.params.thoughtId)
+        thoughtById.reactions.push({reactionBody: req.body.reactionBody, username: req.body.username})
+        thoughtById.save()
+        res.json(thoughtById)
+    }
+    catch(err){
+        console.log("error in adding reaction to thought")
+        res.status(500).json("error in adding reaction to thought")
+    }
+})
 
 
 

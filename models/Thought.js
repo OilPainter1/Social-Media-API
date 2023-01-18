@@ -45,7 +45,7 @@ const thoughtSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reactions: reactionSchema
+    reactions: [reactionSchema]
 },{
     toJSON: {
       virtuals: true,
