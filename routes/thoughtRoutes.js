@@ -47,6 +47,19 @@ router.post('/:thoughtId/reactions', async (req,res)=>{
     }
 })
 
+router.delete('/:thoughtId/reactions/:reactionId', async(req,res)=>{
+    try{
+        let thoughtById = await Thought.findById(req.params.thoughtId)
+        thoughtById.reactions = thoughtById.reactions.filter(reaction=> reaction.reactionId != req.params.reactionId)
+        thoughtById.save()
+        res.json(thoughtById)
+    }
+    catch(err){
+        console.log('error in deleting reaction')
+        res.status(500).json('error in deleting reaction')
+    }
+})
+
 
 
 module.exports = router
