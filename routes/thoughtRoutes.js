@@ -19,20 +19,22 @@ router.get('/:thoughtId', async(req,res)=>{
 
 router.post('/', async(req,res)=>{
     try{
-        let userId = req.body.userId
+        let userById = await User.findById(req.body.userId)
         let newThought = await Thought.create({
             thoughtText: req.body.thoughtText,
-            username: req.body.username
+            username: req.body.username,
         })
+        userById.thoughts.push(newThought._id)
+        userById.save()
         res.json(newThought)
-        await User.findByIdAndUpdate(req.body.userId, {thoughts: newThought._id })
-
     }
     catch(err){
         console.log(err)
         res.status(500).json('Thought not posted')
     }
 })
+
+
 
 
 

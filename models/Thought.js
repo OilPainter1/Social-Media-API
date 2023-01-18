@@ -1,4 +1,34 @@
+
 const { mongoose } = require('../config/connection')
+
+const reactionSchema = new mongoose.Schema({
+    reactionId:{
+        type: mongoose.Types.ObjectId,
+        default: new mongoose.Types.ObjectId
+    },
+    reactionBody:{
+        type: String,
+        required: true,
+        maxLength: 280
+    },
+    username:{
+        type: String,
+        required: true
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now,
+    },
+},
+{
+    query:{
+        getTime(){
+            return this.createdAt.toUTCString()
+        }
+    }
+})
+
+console.log(reactionSchema)
 
 const thoughtSchema = new mongoose.Schema({
     thoughtText:{
@@ -14,7 +44,8 @@ const thoughtSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
-    }
+    },
+    reactions: reactionSchema
 },{
     toJSON: {
       virtuals: true,

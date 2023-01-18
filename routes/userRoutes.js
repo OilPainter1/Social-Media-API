@@ -46,6 +46,16 @@ router.post('/', async(req,res)=>{
     }
 })
 
+router.put('/:userId', async(req,res)=>{
+    try{
+        res.json(await User.findByIdAndUpdate(req.params.userId,req.body))
+    }
+    catch(err){
+        console.log('error in updating user by id')
+        res.json('error in updating user by id')
+    }
+})
+
 router.put('/:userId/friends/:friendId', async(req,res)=>{
     try{
     let newFriend = await User.findById(req.params.friendId)
@@ -57,6 +67,19 @@ router.put('/:userId/friends/:friendId', async(req,res)=>{
     catch(err){
         console.log(err)
         res.status(500).json('error in adding friend to user')
+    }
+})
+
+router.delete('/:userId/friends/:friendId', async(req,res)=>{
+    try{
+        let user = await User.findById(req.params.userId)
+        user.friends = user.friends.filter(friend => friend._id != req.params.friendId)
+        user.save()
+        res.json(user)
+    }
+    catch(err){
+        console.log('error in deleting friend from user')
+        res.json('error in deleting friend from user')
     }
 })
 
