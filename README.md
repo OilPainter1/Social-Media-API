@@ -21,3 +21,6 @@ Type node server.js into the terminal
 
 ## Video Walkthrough: 
 https://drive.google.com/file/d/1psmzGro_xmp-tcyxN2cHf0VqpynhN7ww/view
+
+## Image:
+<img width="990" alt="Social-Media-API-Screen-Shot" src="https://user-images.githubusercontent.com/109541412/222523105-60f56ab4-4028-46d1-8d3a-0371edfdcc6f.png">
