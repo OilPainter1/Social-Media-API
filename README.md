@@ -16,8 +16,13 @@ This server-side app is an API that allows the user to make http requests to add
 - server.js: starts express server
 
 ## Running the App:
-Type node server.js into the terminal
-
+### In the command line:
+- run git clone https://github.com/OilPainter1/Social-Media-API.git
+- cd into the project
+- run npm i
+- run node server.js
+#### The command line should log "app listening on port: 3002"
+#### Open insomnia and begin making http requests on local host at port 3002
 
 ## Video Walkthrough: 
 https://drive.google.com/file/d/1psmzGro_xmp-tcyxN2cHf0VqpynhN7ww/view
