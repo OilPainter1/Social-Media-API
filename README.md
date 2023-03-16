@@ -10,9 +10,9 @@ This server-side app is an API that allows the user to make http requests to add
 - MongoDB Compass
 
 ## Organization
-- routes file: contains routes to handle different incoming http requests
-- config file: connects app to MongoDB
-- models file: outlines schema of Thought and User data
+- routes folder: contains routes to handle different incoming http requests
+- config folder: connects app to MongoDB
+- models folder: outlines schema of Thought and User data
 - server.js: starts express server
 
 ## Running the App:
